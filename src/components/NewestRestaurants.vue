@@ -8,7 +8,7 @@
           <small>{{ restaurant.Category ? restaurant.Category.name : '未分類'}}</small>
         </h4>
         <p>{{ restaurant.description}}</p>
-        {{ restaurant.createdAt}}
+        {{ restaurant.createdAt | fromNow}}
         <hr />
       </div>
     </div>
@@ -16,7 +16,16 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
+  filters: {
+    fromNow(datetime) {
+      if (!datetime) {
+        return "-";
+      }
+      return moment(datetime).fromNow();
+    },
+  },
   props: {
     restaurants: {
       type: Array,
@@ -29,5 +38,6 @@ export default {
 <style scoped>
 small {
   font-size: 10px;
+  padding-left: 5px;
 }
 </style>

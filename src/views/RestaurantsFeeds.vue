@@ -12,6 +12,7 @@
       </div>
       <div class="col-md-6">
         <h3>最新評論</h3>
+        <NewestComments :comments="comments" />
         <!-- 最新評論 NewestComments -->
       </div>
     </div>
@@ -21,6 +22,7 @@
 <script>
 import NavTabs from "../components/NavTabs";
 import NewestRestaurants from "../components/NewestRestaurants";
+import NewestComments from "../components/NewestComments";
 
 const dummyData = {
   restaurants: [
@@ -576,6 +578,7 @@ export default {
   components: {
     NavTabs,
     NewestRestaurants,
+    NewestComments,
   },
 
   data() {
@@ -590,7 +593,6 @@ export default {
       const { restaurants, comments } = dummyData;
       this.restaurants = restaurants;
       this.comments = comments;
-      console.log(restaurants);
     },
   },
   created() {
