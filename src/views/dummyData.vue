@@ -1,26 +1,3 @@
-<template>
-  <div class="container py-5">
-    <NavTabs />
-
-    <h1 class="mt-5">最新動態</h1>
-    <hr />
-    <div class="row">
-      <div class="col-md-6">
-        <h3>最新餐廳</h3>
-        <!-- 最新餐廳 NewestRestaurants -->
-        <NewestRestaurants :restaurants="restaurants" />
-      </div>
-      <div class="col-md-6">
-        <h3>最新評論</h3>
-        <!-- 最新評論 NewestComments -->
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import NavTabs from "../components/NavTabs";
-import NewestRestaurants from "../components/NewestRestaurants";
 
 const dummyData = {
   restaurants: [
@@ -570,31 +547,3 @@ const dummyData = {
     },
   ],
 };
-
-export default {
-  // name: "NewestRestaurants",
-  components: {
-    NavTabs,
-    NewestRestaurants,
-  },
-
-  data() {
-    return {
-      restaurants: [],
-      comments: [],
-    };
-  },
-
-  methods: {
-    fetchFeeds() {
-      const { restaurants, comments } = dummyData;
-      this.restaurants = restaurants;
-      this.comments = comments;
-      console.log(restaurants);
-    },
-  },
-  created() {
-    this.fetchFeeds();
-  },
-};
-</script>
