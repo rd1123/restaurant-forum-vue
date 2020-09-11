@@ -592,7 +592,9 @@ export default {
     fetchFeeds() {
       const { restaurants, comments } = dummyData;
       this.restaurants = restaurants;
-      this.comments = comments;
+      this.comments = comments.filter(
+        (comment) => comment.Restaurant && comment.text
+      );
     },
   },
   created() {

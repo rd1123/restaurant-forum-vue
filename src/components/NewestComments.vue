@@ -23,7 +23,7 @@ export default {
       if (!datetime) {
         return "-";
       }
-      return moment(datetime).fromNow();
+      return moment(datetime, "YYYY-MM-DD").fromNow();
     },
   },
   props: {
