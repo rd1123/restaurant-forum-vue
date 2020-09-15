@@ -1,33 +1,45 @@
 <template>
   <div class="col-md-6 col-lg-4">
     <div class="card mb-4">
+      <img
+        :src="restaurant.image"
+        alt="Card image cap"
+        class="card-img-top"
+        width="286px"
+        height="180px"
+      />
       <div class="card-body">
-        <p class="card-text title-warp">
-          <a href="#">restaurant name</a>
+        <p class="card-text title-wrap">
+          <a href="#">{{ restaurant.name }}</a>
         </p>
-        <span class="badge badge-secondary">category</span>
-        <p class="card-text text-truncate">restaurant description</p>
+        <span class="badge badge-secondary">{{ restaurant.Category.name}}</span>
+        <p class="card-text text-truncate">{{ restaurant.description}}</p>
       </div>
       <div class="card-footer">
         <button
           v-if="restaurant.isFavorited"
-          type="button"
-          class="btn btn-danger mr-2"
           @click.stop.prevent="deleteFavorite"
+          type="button"
+          class="btn btn-danger btn-border favorite mr-2"
         >移除最愛</button>
         <button
           v-else
-          type="button"
-          class="btn btn-primary mr-2"
           @click.stop.prevent="addFavorite"
-        >加入最愛</button>
-        <button
-          v-if="restaurant.isLike"
           type="button"
-          class="btn btn-danger mr-2"
+          class="btn btn-primary btn-border favorite mr-2"
+        >加到最愛</button>
+        <button
+          v-if="restaurant.isLiked"
           @click.stop.prevent="deleteLike"
+          type="button"
+          class="btn btn-danger like mr-2"
         >Unlike</button>
-        <button v-else type="button" class="btn btn-primary mr-2" @click.stop.prevent="addLike">Like</button>
+        <button
+          v-else
+          @click.stop.prevent="addLike"
+          type="button"
+          class="btn btn-primary like mr-2"
+        >Like</button>
       </div>
     </div>
   </div>
@@ -37,30 +49,39 @@
 export default {
   props: {
     initialRestaurant: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
   data() {
     return {
-      restaurant: {
-        isFavorited: false,
-        isLike: false,
-      },
+      restaurant: this.initialRestaurant,
     };
   },
   methods: {
     addFavorite() {
-      this.restaurant.isFavorited = true;
+      this.restaurant = {
+        ...this.restaurant,
+        isFavorited: true,
+      };
     },
     deleteFavorite() {
-      this.restaurant.isFavorited = false;
+      this.restaurant = {
+        ...this.restaurant,
+        isFavorited: false,
+      };
     },
     addLike() {
-      this.restaurant.isLike = true;
+      this.restaurant = {
+        ...this.restaurant,
+        isLiked: true,
+      };
     },
     deleteLike() {
-      this.restaurant.isLike = false;
+      this.restaurant = {
+        ...this.restaurant,
+        isLiked: false,
+      };
     },
   },
 };
